@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+
+</html>
+<script>
+    /*
+    考试第一题     JS的数据类型以及区别:
+    基本数据类型     string   number  boolean  null  undefined
+    引用数据类型     []  {}  Date   Math   正则   function....
+    基本数据类型  是存在了  栈内存中  操作的是值
+    引用数据类型  是存在   堆内存中    操作的是地址
+
+    第二题    检测数据类型:
+    typeof   object.prototype.toString.call()    constructor  instanceof
+
+    第三题   JS的声明变量:
+    var let const   function   //   class  import
+
+    第四题
+    var num = parseFloat ('width:100px')
+    num ==> NaN  NaN和谁都不相等
+    typeof NaN  ===>  'number'
+    最后结果为 alert(3)
+
+    第五题
+    只弹一次  结果是9   考 for 、
+    break   跳出整个循环
+     contiue     跳出本次循环
+
+     第六题
+    数组末尾添加项数
+    arr[arr.length]=100;        ary.push(100);  ary.splice(n,m,x,y,z)  从索引n 删除到索引m 用 x y  代替 z 是末尾添加的那个项数
+    ary.splice(ary.length-1+1,0,100)
+    删除数组的最后一项   ary.pop()   ary.length--   ary.splice(ary.length-1,1)
+
+    第七题     排序
+    ary,sort(function(a,b){
+        return b - a
+    })
+    ary.sort((a,b)=>b - a)
+
+    第九题  替换符号
+    var str ='2019-08-19';   '2019/08/19
+    str.replace 替换('-','/').replace('-','/')
+    join  拼接字符串
+
+    正则
+    str.replace(/-/g,'/')
+
+    第十题 [n-m]之间的随机整数
+    Math.round()    四舍五入
+    Math.randow()    [0-1]之间的随机数
+    Math.round(Math.randow()*(m-n)+n)
+    [2-93]
+     Math.round(Math.randow()*91+2)
+
+     0 NaN ''  null undefined   这五个都是false   其他的都是true
+
+     第十三题
+     document.getElementById('box')
+     document.getElementsByClassName('box')[0]
+     document.getElementsByTagName('div')[0]
+     document.querySelector('#box')
+     document.querySelectorAll('#box')[0]
+
+     第十四题
+     1 3 8 9   nodeType
+     元素节点的  nodeType 1
+     文本节点    nodeType  3
+     注释节点   nodeType    8
+     根节点   nodeType  9
+       prevtinusSiling    哥哥节点
+       previoussElementSibiing
+    //自封过    兼容的  getBro  函数
+       document.body   document.documentElement
+       innerHTML 是可以识别结构的   innerText 不可以识别结构
+
+
+       document.queateElement('div');
+       oDiv.innerHTML = 'hello world';
+       document.body.appendChild(oDiv);
+
+    第十六题
+    []  ===  [];false
+    ![] == []; 空数组转成布尔是true   取反结果是false  false == []  0 == 0 true
+
+    第十七题
+    设置定时器的方法：
+     setTimeout     setInterval
+
+     清除定时器   clearTimeout   clearInterval
+     setTimout + 递归 ===> setInterval
+
+    第十八题
+    假设法
+    先排序   再取值
+    Math.max(...ary)
+
+    第十九题
+    复制数组
+    ary.slice()
+    ary.slice(0)
+    ary.concat([])
+    使用for循环 + push 
+
+    第二十题
+    ||   前边成立给前边
+    &&    前边成立给后边
+    var a =1  || 0;
+    var b =1 && 0;
+    a = 1;b = 0;
+
+     */
+    var str = '1234-567-89';
+    var ary = str.split('-');
+    console.log(ary);
+    var str2 = ary.join('/');
+    console.log(str2);
+    // box.innerHTML='<button onclick='while(true)'
+
+    /* 
+    任意数求和   arguments
+     */
+    function sum() {
+        var t = 0;
+        for (var i = 0; i < arguments.length; i++) {
+            // arguments[i]   对应的是我们每一个实参
+            // t+=arguments[i]  不考虑    非合法数字
+            // if (typeof argument[i] == 'number' && !isNaN(arguments[i])) {
+            //     //必须是数字  而且还不能是  NaN  才可以往上累加
+            //     t + arguments[i];
+            if (!isNaN(arguments[i])) {
+                t += arguments[i] / 1
+            }
+        }
+        return t;
+    }
+
+
+    console.log(sum(1, 3, '4', NaN, 'qqq'))
+
+    function query(str) {
+        //先把str  按照 ？ 拆分  去后边的那一项
+        var str2 = str.split('?')[1];
+        //把  str2 按照 &  拆分
+        var ary = str2.split('&');
+        //把ary 中的每一项都用 =  拆分  前项作为属性名   后项作为属性值
+        var obj = {};
+        ary.forEach((v, i) => {
+            // v 就是数组中的每一项
+            var arr = v.split('=');
+            obj[arr[0]] = arr[1]
+        })
+        return obj;
+    }
+
+    //验证码
+
+    function fn() {
+        var str = 'qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM0123456789'
+        var s = '';//要去拼接的字符串
+        while (s.length < 4) {
+            var n = Math.round(Math.random() * 61);
+            if (s.indexOf(str[n]) == -1) {
+                s += str[n];
+            }
+        }
+        return s;
+    }
+
+    //隔行变色
+    var oLis = document.getElementsByTagName('li');
+    for (var i = 0; i < oLis.length; i++) {
+        oLis[i].style.background = i % 2 ? 'blue' : 'red';
+        olis[i].myindex = i;
+        oLis[i].onmouseenter = function () {
+            col = this.style.background;
+            this.style.background = 'black'
+        }
+        oLis[i].onmouseleave = function () {
+            this.style.background = col;
+        }
+        oLis[i].onclick = function () {
+            alert(`我是第${this.myindex + 1}个li`)
+        }
+    }
+
+</script>
