@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+
+</html>
+<script>
+    /* 
+    windom   是个全局对象
+    通过var 声明的变量  会对应的向window 中增加一个对应的属性
+
+     // let const   声明的变量是  不存在变量提升的
+    也就是说不能再  let 之前使用该变量   一使用就报错
+    let 和 const声明的变量 不会再window 中增加 对应的属性
+    */
+    var obj = {
+        age: 123
+    }
+    'age' in obj    //obj 中有没有 'age' 属性
+    console.log('obj' in window)
+
+    //let const
+    //console.log(a)
+    let a = 12;
+    console.log(a);
+    console.log('a' in window)
+</script>

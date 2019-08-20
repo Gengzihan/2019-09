@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+
+</html>
+<script>
+    /* 
+    作用域    起作用的区域 
+
+    JS中的作用域   全局作用域  私有作用域
+    JS中的作用域 指的就是  一块栈内存  
+
+    栈内存   存储值类型    提供代码的运行环境
+    堆内存  存储引用数据类型   
+
+    全局作用域:  页面一打开  就会形成一个全局作用域  一个页面只有一个全局作用域
+    私有作用域:   函数执行的时候 会形成一个私有的作用域
+
+
+    全局变量  在全局声明的变量叫做全局变量
+    私有变量  在私有作用域声明的变量叫做私有变量
+
+    上级作用域   外层作用域: 查找规律: 上级作用是谁  就看这个函数是在那个作用域声明定义的
+        对于私有作用域中的某些变量，若没有在私有作用中声明过  那么函数执行时，就会去上级作用域查找该变量
+        上级作用域若没有该变量，上级作用域若没有该变量，则接着向上级查找，直到查找到
+        全局作用域   若仍没有，则报错！
+
+    */
+    var a = 12;//全局变量
+    var f = function () {
+        console.log(a); //undefined  因为它存在变量提升的原因
+        var a = 100;    //私有
+        console.log(a); //100 内部的赋值为100     
+    }
+    f();//在代码执行之前  就有变量提升 的这个阶段
+    console.log(a);//12  全局的这个a 和私有 的a 没有关系
+
+    var b = 10; //全局
+    var f2 = function () {
+        console.log(b);//10
+        var b = 200;
+        consloe.log(b);//200
+    }
+    f2();
+    console.log(b);//200
+</script>
