@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+
+</html>
+<script>
+    function fn() { }
+    /*
+        1.普通函数
+            先开辟作用域，形参赋值 变量提升  代码执行   return是什么 运行的结果就是啥
+        2.构造函数
+            先开辟作用域 形参赋值  变量提升 【开辟一个堆内存，把函数中的this指向这个堆内存】 代码执行  【默认返回  this】
+        3.作为普通的对象
+
+     */
+    var name = '中国', age = 5000;
+    function Person() {
+        getName = function () {
+            console.log(this.name)
+        };
+        this.name = 'zfpx';
+        this.age = 9;
+
+    }
+    Person.name = '珠峰';
+    Person.getName = function () {
+        console.log(this.name);
+    };
+    Person.prototype.getName = function () {
+        console.log(this.name);
+    };
+    var obj = { name: '培训', f: Person };
+    var per = new Person();
+    per.getName = function () {
+        console.log(12)
+    };
+    var per2 = new Person();
+    f();
+    Person();
+    per.getName();
+    per2.getName();
+</script>

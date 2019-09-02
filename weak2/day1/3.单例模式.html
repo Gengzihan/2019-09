@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    普通的对象
+</body>
+
+</html>
+<script>
+    // var name = '小明'
+    // var age = 10;
+    // var sex = '男';
+
+    //单例模式其实就是一个对象，我们把这个对象称为  命名空间
+    var per1 = {
+        name: '小明',
+        age: '10',
+        sex: '男',
+        eat: function () {
+            console.log(`${this.name}吃饭`)
+        }
+    }
+    var per2 = {
+        name: '小明',
+        age: '12',
+        sex: '女'
+    }
+    per1.eat();
+    var f = per1.eat()
+
+
+    var tools = {
+        f1: function () {
+
+        },
+        f2: function () {
+
+        },
+        f3() {
+            console.log(6666)
+        }
+    }
+    tools.f3();
+
+    //高级单例模式
+
+    var utils = function () {
+        var name = '小明';
+        age: '10';
+        sex: '男';
+        var eat = function () {
+            console, log(`${name}吃饭`)
+        };
+        return {
+            name, sex, age, eat
+        }
+    }
+    var per3 = utils();//per3仍然是一个对象
+    pre1.name = '小红'
+    console.log(per3.name, per1.name)
+
+    per1.eat();//普通单例 是没有私有的内容，别的人员可以任意更改你的内部属性
+
+    pre3.name = '小红';//只是修改了  per3这个对象中的 name 属性，utils中的name 变量没有改变
+    var per4 = utils();//高级单例模式，使用的这个单例的人，是改变不了内部变量的
+    console.log = (per4.name)
+
+    //console.log(per3.name,per1.name)
+    //per1的name 属性  用的人能否更改 ? ?
+    //pre3的 name 属性  用的人能否更改 ? ?
+    //都是可以更改的 但是 per3中name对应的变量是修改不了的；
+    //用的人每次都会重新执行高级单例，每次获取的都是初始值
+</script>
